@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Prueba PHP</title>
-    </head>
-    <body>
-        <?php echo '<p>Hola mundo</p>'; ?>
-    </body>
-</html>
+<?php
+session_start();
+require_once __DIR__ . '/../routes/web.php';

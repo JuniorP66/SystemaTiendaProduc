@@ -1,26 +1,32 @@
 <?php
-require_once 'models/User.php';
+require_once __DIR__ . '/../models/User.php';
 
 class AuthController {
+
     public function login($correo, $clave) {
-        $user = User::findByEmail($correo);
-        if ($user && password_verify($clave, $user['clave'])) {
-            $_SESSION['usuario'] = $user;
-            header("Location: /views/user/profile.php");
+        $usuario = User::findByEmail($correo);
+
+        if ($usuario && password_verify($clave, $usuario['clave'])) {
+            $_SESSION['usuario'] = $usuario;
+            header('Location: /profile');
             exit;
         } else {
-            echo "Credenciales incorrectas";
+            echo "<p style='color:red;'>Correo o contraseña incorrectos.</p>";
+            echo "<a href='/login'>Volver al login</a>";
         }
     }
 
     public function register($data) {
+        if (User::findByEmail($data['correo'])) {
+            echo "<p style='color:red;'>Este correo ya está registrado.</p>";
+            echo "<a href='/register'>Volver al registro</a>";
+            return;
+        }
+
         $data['clave'] = password_hash($data['clave'], PASSWORD_DEFAULT);
         User::save($data);
-        header("Location: /views/auth/login.php");
-    }
 
-    public function logout() {
-        session_destroy();
-        header("Location: /");
+        echo "<p style='color:green;'>Usuario registrado con éxito.</p>";
+        echo "<a href='/login'>Iniciar sesión</a>";
     }
 }

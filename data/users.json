@@ -3,8 +3,8 @@
     "id": 1,
     "nombre": "Juan Pérez",
     "correo": "juan@example.com",
-    "clave": "$2y$10$algoHash",
-    "direccion": "Av. Siempre Viva 123",
-    "telefono": "70000000"
+    "clave": "$2y$10$BiZuONgA.zg8R28lb0vRDOmCVyREcDk1VXoAq05rxkEjK5kexEyIC",
+    "telefono": "70000001",
+    "direccion": "Av. Principal 123"
   }
 ]
